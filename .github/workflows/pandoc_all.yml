@@ -5,14 +5,17 @@ on:
           - main
 jobs:
     deploy:
-        runs-on: docker://pandoc/core:2.12
+        runs-on: ubuntu-24.04
         steps:
             - name: checkout
               uses: actions/checkout@v2
             - name: pandoc_all
               shell: bash
               working-directory: ./
-              run: python3 ../../pandoc_all.py
+              run: |
+                sudo apt-get update
+                sudo apt-get install pandoc
+                python3 pandoc_all.py
             - name: deploy
               uses: JamesIves/github-pages-deploy-action@4.1.0
               with:
