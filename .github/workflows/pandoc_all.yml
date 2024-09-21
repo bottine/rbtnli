@@ -5,7 +5,7 @@ on:
           - main
 jobs:
     deploy:
-        runs-on: pandoc/core
+        runs-on: pandoc
         steps:
             - name: checkout
               uses: actions/checkout@v2
