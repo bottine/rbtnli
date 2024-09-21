@@ -9,10 +9,9 @@ jobs:
         steps:
             - name: checkout
               uses: actions/checkout@v2
-            - name: prepare
-              run: |
-                touch output/.nojekyll   
             - name: pandoc_all
+              shell: bash
+              working-directory: ./
               run: python3 ../../pandoc_all.py
             - name: deploy
               uses: JamesIves/github-pages-deploy-action@4.1.0
