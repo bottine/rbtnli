@@ -16,6 +16,10 @@ jobs:
         steps:
             - name: checkout
               uses: actions/checkout@v2
+            - name: nojekyll
+              shell: bash
+              working-directory: ./
+              run: touch .github/nojekyll
             - name: pandoc_all
               shell: bash
               working-directory: ./
