@@ -1,0 +1,21 @@
+name: Deploy pages
+on:
+    push:
+        branches:
+          - main
+jobs:
+    deploy:
+        runs-on: pandoc/core
+        steps:
+            - name: checkout
+              uses: actions/checkout@v2
+            - name: prepare
+              run: |
+                touch output/.nojekyll   
+            - name: pandoc_all
+              run: python3 ../../pandoc_all.py
+            - name: deploy
+              uses: JamesIves/github-pages-deploy-action@4.1.0
+              with:
+                branch: gh-pages
+                folder: output
