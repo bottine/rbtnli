@@ -27,8 +27,12 @@ jobs:
                 sudo apt-get update
                 sudo apt-get install pandoc
                 python3 pandoc_all.py
-            - name: deploy
-              uses: JamesIves/github-pages-deploy-action@4.1.0
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v2
               with:
-                branch: gh-pages
-                folder: output
+                path: 'output'
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v2
